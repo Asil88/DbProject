@@ -5,10 +5,10 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Geo {
-    public String lat;
-    public String lng;
+    private String lat;
+    private String lng;
 
-    public Geo() {
+    private Geo() {
     }
 
     public Geo(String lat, String lng) {

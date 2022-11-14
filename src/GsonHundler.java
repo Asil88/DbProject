@@ -23,45 +23,47 @@ public class GsonHundler {
         List<Posts> posts = gsonHundler.parsePostsJsonToObject();
         List<User> users = gsonHundler.parseUsersJsonToObject();
 
-        gsonHundler.toJsonFileAlbums("C:\\Users\\Anton\\Programming\\IdeaProjects\\TeachSkills\\JavaHomework\\OneProject\\outputJsons\\outAlbums.json", albums);
-        gsonHundler.toJsonFileComments("C:\\Users\\Anton\\Programming\\IdeaProjects\\TeachSkills\\JavaHomework\\OneProject\\outputJsons\\outComments.json", comments);
-        gsonHundler.toJsonFilePhotos("C:\\Users\\Anton\\Programming\\IdeaProjects\\TeachSkills\\JavaHomework\\OneProject\\outputJsons\\outPhotos.json", photos);
-        gsonHundler.toJsonFilePosts("C:\\Users\\Anton\\Programming\\IdeaProjects\\TeachSkills\\JavaHomework\\OneProject\\outputJsons\\outPosts.json", posts);
-        gsonHundler.toJsonFileUsers("C:\\Users\\Anton\\Programming\\IdeaProjects\\TeachSkills\\JavaHomework\\OneProject\\outputJsons\\outUser.json", users);
+        gsonHundler.toJsonFileAlbums("D:\\Program\\JavaHomework\\DbProject\\outputJsons\\outAlbums.json", albums);
+        gsonHundler.toJsonFileComments("D:\\Program\\JavaHomework\\DbProject\\outputJsons\\outComments.json", comments);
+        gsonHundler.toJsonFilePhotos("D:\\Program\\JavaHomework\\DbProject\\outputJsons\\outPhotos.json", photos);
+        gsonHundler.toJsonFilePosts("D:\\Program\\JavaHomework\\DbProject\\outputJsons\\outPosts.json", posts);
+        gsonHundler.toJsonFileUsers("D:\\Program\\JavaHomework\\DbProject\\outputJsons\\outUser.json", users);
+
+        //gsonHundler.toJsonFileUsers("C:\\Users\\Anton\\Programming\\IdeaProjects\\TeachSkills\\JavaHomework\\OneProject\\outputJsons\\outUser.json", users);
     }
 
     public ArrayList<Albums> parseAlbumsJsonToObject() throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         // return mapper.readValue(new File("D:\\Program\\TeachMeSkills\\JavaHomework\\SemiProject\\inputJsons\\albums.json"), List.class);
-        return mapper.readValue(new File("C:\\Users\\Anton\\Programming\\IdeaProjects\\TeachSkills\\JavaHomework\\OneProject\\inputJsons\\albums.json"), new TypeReference<>() {
+        return mapper.readValue(new File("D:\\Program\\JavaHomework\\DbProject\\inputJsons\\albums.json"), new TypeReference<>() {
         });
     }
 
     public ArrayList<Comments> parseCommentsJsonToObject() throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         // return mapper.readValue(new File("D:\\Program\\TeachMeSkills\\JavaHomework\\SemiProject\\inputJsons\\albums.json"), List.class);
-        return mapper.readValue(new File("C:\\Users\\Anton\\Programming\\IdeaProjects\\TeachSkills\\JavaHomework\\OneProject\\inputJsons\\comments.json"), new TypeReference<>() {
+        return mapper.readValue(new File("D:\\Program\\JavaHomework\\DbProject\\inputJsons\\comments.json"), new TypeReference<>() {
         });
     }
 
     public ArrayList<Photos> parsePhotosJsonToObject() throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         // return mapper.readValue(new File("D:\\Program\\TeachMeSkills\\JavaHomework\\SemiProject\\inputJsons\\albums.json"), List.class);
-        return mapper.readValue(new File("C:\\Users\\Anton\\Programming\\IdeaProjects\\TeachSkills\\JavaHomework\\OneProject\\inputJsons\\photos.json"), new TypeReference<>() {
+        return mapper.readValue(new File("D:\\Program\\JavaHomework\\DbProject\\inputJsons\\photos.json"), new TypeReference<>() {
         });
     }
 
     public ArrayList<Posts> parsePostsJsonToObject() throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         // return mapper.readValue(new File("D:\\Program\\TeachMeSkills\\JavaHomework\\SemiProject\\inputJsons\\albums.json"), List.class);
-        return mapper.readValue(new File("C:\\Users\\Anton\\Programming\\IdeaProjects\\TeachSkills\\JavaHomework\\OneProject\\inputJsons\\posts.json"), new TypeReference<>() {
+        return mapper.readValue(new File("D:\\Program\\JavaHomework\\DbProject\\inputJsons\\posts.json"), new TypeReference<>() {
         });
     }
 
     public ArrayList<User> parseUsersJsonToObject() throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         // return mapper.readValue(new File("D:\\Program\\TeachMeSkills\\JavaHomework\\SemiProject\\inputJsons\\albums.json"), List.class);
-        return mapper.readValue(new File("C:\\Users\\Anton\\Programming\\IdeaProjects\\TeachSkills\\JavaHomework\\OneProject\\inputJsons\\users.json"), new TypeReference<>() {
+        return mapper.readValue(new File("D:\\Program\\JavaHomework\\DbProject\\inputJsons\\users.json"), new TypeReference<>() {
         });
     }
 

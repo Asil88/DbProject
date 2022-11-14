@@ -4,9 +4,9 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Company {
-    public String companyName;
-    public String catchPhrase;
-    public String bs;
+    private String companyName;
+    private String catchPhrase;
+    private String bs;
 
     public Company() {
     }

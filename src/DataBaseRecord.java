@@ -7,9 +7,8 @@ import objects.users.User;
 import java.io.IOException;
 import java.sql.*;
 import java.util.List;
-import java.util.Scanner;
 
-public class DataBaseWorker {
+public class DataBaseRecord {
 
     public static void main(String[] args) throws IOException, SQLException {
         GsonHundler gsonHundler = new GsonHundler();
@@ -21,17 +20,14 @@ public class DataBaseWorker {
         List<User> users = gsonHundler.parseUsersJsonToObject();
 
 
-       /* DataBaseWorker.createAlbumsTable(albums);
-        DataBaseWorker.createCommentsTable(comments);
-        DataBaseWorker.createPhotosTable(photos);*/
+        DataBaseRecord.createAlbumsTable(albums);
+        DataBaseRecord.createCommentsTable(comments);
+        DataBaseRecord.createPhotosTable(photos);
+        DataBaseRecord.createPostsTable(posts);
+        DataBaseRecord.createUsersTable(users);
 
-        //DataBaseWorker.createPostsTable(posts);
-        //DataBaseWorker.createUsersTable(users);
-
-        DataBaseWorker.deleteAlbumsById(1);
 
     }
-
 
     public static void createAlbumsTable(List<Albums> albums) {
         try (Connection connect = connect()) {
@@ -44,35 +40,20 @@ public class DataBaseWorker {
                         )
                     """);
             StringBuilder sb = new StringBuilder();
-            sb.append("INSERT INTO albums (id, UserId, title) VALUES");
+            sb.append("INSERT INTO albums (userId, id, title) VALUES");
             for (Albums album : albums) {
-                sb.append("(").append(album.getId()).append(", ")
-                        .append(album.getUserId()).append(",")
+                sb.append("(").append(album.getUserId()).append(", ")
+                        .append(album.getId()).append(",")
                         .append("'").append(album.getTitle()).append("'")
                         .append(")").append(",");
             }
             sb.deleteCharAt(sb.length() - 1);
             statement.execute(sb.toString());
-            //statement.close();
+            statement.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
-
-    public static void deleteAlbumsById(Integer id) {
-        try (Connection con = connect()) {
-            Statement statement = con.createStatement();
-            statement.execute(String.format("DELETE FROM albums WHERE id = %d", id));
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public static void read() {
-
-
-    }
-
 
     public static void createCommentsTable(List<Comments> comments) {
         try (Connection connect = connect()) {
@@ -99,12 +80,10 @@ public class DataBaseWorker {
             sb.deleteCharAt(sb.length() - 1);
             statement.execute(sb.toString());
             statement.close();
-
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
-
 
     public static void createPhotosTable(List<Photos> photos) {
         try (Connection connect = connect()) {
@@ -130,7 +109,7 @@ public class DataBaseWorker {
             }
             sb.deleteCharAt(sb.length() - 1);
             statement.execute(sb.toString());
-            //statement.close();
+            statement.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -144,7 +123,7 @@ public class DataBaseWorker {
                         userId INTEGER,     
                         id INTEGER,
                         title VARCHAR NOT NULL,
-                        body VARCHAR NOT NULL,
+                        body VARCHAR NOT NULL
                         )
                     """);
             StringBuilder sb = new StringBuilder();
@@ -158,11 +137,12 @@ public class DataBaseWorker {
             }
             sb.deleteCharAt(sb.length() - 1);
             statement.execute(sb.toString());
-            //statement.close();
+            statement.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
+
 
     public static void createUsersTable(List<User> users) {
         try (Connection connect = connect()) {
@@ -170,7 +150,8 @@ public class DataBaseWorker {
             statement.execute("""
                         Create table if not exists users(
                     	id varchar not null,
-                    	username varchar not null,
+                    	name varchar not null,
+                    	userName varchar not null,
                     	email varchar not null,
                     	street varchar not null,
                     	suite varchar not null,
@@ -180,83 +161,42 @@ public class DataBaseWorker {
                     	lng varchar not null,
                     	phone varchar not null,
                     	website varchar not null,
-                    	name varchar not null,
+                    	companyName varchar not null,
                     	catchPhrase varchar not null,
                     	bs varchar not null
                         )
                     """);
-
             StringBuilder sb = new StringBuilder();
-            sb.append("INSERT INTO users(id," + "name," + " username," + " email," + " street," + " suite," + " city," +
-                    " zipcode," + " lat," + " lng," + " phone," + " website," + " name," + " catchPhrase," + " bs) VALUES");
+            sb.append("INSERT INTO users(id,name,username,email,street,suite,city," +
+                    "zipcode,lat,lng,phone,website,companyName,catchPhrase,bs) VALUES");
             for (User user : users) {
-                String id = user.getId();
-                String name = user.getName();
-                String username = user.getUserName();
-                String email = user.getEmail();
-                String street = user.getAddress().getStreet();
-                String suite = user.getAddress().getSuite();
-                String city = user.getAddress().getCity();
-                String zipcode = user.getAddress().getZipcode();
-                String lat = user.getAddress().getGeo().getLat();
-                String lng = user.getAddress().getGeo().getLng();
-                String phone = user.getPhone();
-                String website = user.getWebsite();
-                String companyName = user.getCompany().getCompanyName();
-                String catchPhrase = user.getCompany().getCatchPhrase();
-                String bs = user.getCompany().getBs();
-                sb.append("(").append("'").append(id).append("', ")
-                        .append("'").append(name).append("', ")
-                        .append("'").append(username).append("', ")
-                        .append("'").append(email).append("', ")
-                        .append("'").append(street).append("', ")
-                        .append("'").append(suite).append("', ")
-                        .append("'").append(city).append("', ")
-                        .append("'").append(zipcode).append("', ")
-                        .append("'").append(lat).append("', ")
-                        .append(", ").append(lng).append("', ")
-                        .append("'").append(phone).append("', ")
-                        .append("'").append(website).append("', ")
-                        .append("'").append(companyName).append("', ")
-                        .append("'").append(catchPhrase).append("', ")
-                        .append("'").append(bs).append("'").append(")").append(",");
+                sb.append("(").append("'").append(user.getId()).append("', ")
+                        .append("'").append(user.getName()).append("', ")
+                        .append("'").append(user.getUserName()).append("', ")
+                        .append("'").append(user.getEmail()).append("', ")
+                        .append("'").append(user.getAddress().getStreet()).append("', ")
+                        .append("'").append(user.getAddress().getSuite()).append("', ")
+                        .append("'").append(user.getAddress().getCity()).append("', ")
+                        .append("'").append(user.getAddress().getZipcode()).append("', ")
+                        .append("'").append(user.getAddress().getGeo().getLat()).append("', ")
+                        .append("'").append(user.getAddress().getGeo().getLng()).append("', ")
+                        .append("'").append(user.getPhone()).append("', ")
+                        .append("'").append(user.getWebsite()).append("', ")
+                        .append("'").append(user.getCompany().getCompanyName()).append("', ")
+                        .append("'").append(user.getCompany().getCatchPhrase()).append("', ")
+                        .append("'").append(user.getCompany().getBs()).append("'")
+                        .append(")").append(",");
             }
             sb.deleteCharAt(sb.length() - 1);
             statement.execute(sb.toString());
+            statement.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
-
-    public static void show() {
-        try (Connection connect = connect()) {
-            PreparedStatement preparedStatement = connect.prepareStatement("""
-                        SELECT u.username FROM users u
-                        JOIN posts p ON u.id = p.user_id
-                        WHERE p.id = ?
-                        LIMIT 1
-                    """);
-
-            int idPostFromUrl = new Scanner(System.in).nextInt();
-
-            preparedStatement.setInt(1, idPostFromUrl);
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            while (resultSet.next()) {
-                String title = resultSet.getString(1);
-                System.out.println(title);
-            }
-
-            preparedStatement.close();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-
     public static Connection connect() throws SQLException {
         Connection connection;
-        String url = "jdbc:sqlite:C:\\Users\\Anton\\Programming\\IdeaProjects\\TeachSkills\\JavaHomework\\OneProject\\datebase.sqlite";
+        String url = "jdbc:sqlite:D:\\Program\\JavaHomework\\DbProject\\datebase.sqlite";
         connection = DriverManager.getConnection(url);
         return connection;
     }
