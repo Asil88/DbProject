@@ -7,6 +7,7 @@ import objects.users.User;
 import java.io.IOException;
 import java.sql.*;
 import java.util.List;
+import java.util.Scanner;
 
 public class DataBaseWorker {
 
@@ -20,13 +21,14 @@ public class DataBaseWorker {
         List<User> users = gsonHundler.parseUsersJsonToObject();
 
 
-        DataBaseWorker.createAlbumsTable(albums);
+       /* DataBaseWorker.createAlbumsTable(albums);
         DataBaseWorker.createCommentsTable(comments);
-        DataBaseWorker.createPhotosTable(photos);
-        DataBaseWorker.createPostsTable(posts);
-        DataBaseWorker.createUsersTable(users);
+        DataBaseWorker.createPhotosTable(photos);*/
 
-        //DataBaseWorker.deleteLines();
+        //DataBaseWorker.createPostsTable(posts);
+        //DataBaseWorker.createUsersTable(users);
+
+        DataBaseWorker.deleteAlbumsById(1);
 
     }
 
@@ -42,10 +44,10 @@ public class DataBaseWorker {
                         )
                     """);
             StringBuilder sb = new StringBuilder();
-            sb.append("INSERT INTO albums (userId, id, title) VALUES");
+            sb.append("INSERT INTO albums (id, UserId, title) VALUES");
             for (Albums album : albums) {
-                sb.append("(").append(album.getUserId()).append(", ")
-                        .append(album.getId()).append(",")
+                sb.append("(").append(album.getId()).append(", ")
+                        .append(album.getUserId()).append(",")
                         .append("'").append(album.getTitle()).append("'")
                         .append(")").append(",");
             }
@@ -55,6 +57,20 @@ public class DataBaseWorker {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public static void deleteAlbumsById(Integer id) {
+        try (Connection con = connect()) {
+            Statement statement = con.createStatement();
+            statement.execute(String.format("DELETE FROM albums WHERE id = %d", id));
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static void read() {
+
+
     }
 
 
@@ -71,7 +87,7 @@ public class DataBaseWorker {
                         )
                     """);
             StringBuilder sb = new StringBuilder();
-            sb.append("INSERT INTO albums (postId, id, name,email,body) VALUES");
+            sb.append("INSERT INTO comments (postId, id, name,email,body) VALUES");
             for (Comments comment : comments) {
                 sb.append("(").append(comment.getPostId()).append(", ")
                         .append(comment.getId()).append(",")
@@ -82,7 +98,8 @@ public class DataBaseWorker {
             }
             sb.deleteCharAt(sb.length() - 1);
             statement.execute(sb.toString());
-            //statement.close();
+            statement.close();
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -102,7 +119,7 @@ public class DataBaseWorker {
                         )
                     """);
             StringBuilder sb = new StringBuilder();
-            sb.append("INSERT INTO albums (albumId, id, title, url, thumbnailUrl) VALUES");
+            sb.append("INSERT INTO photos (albumId, id, title, url, thumbnailUrl) VALUES");
             for (Photos photo : photos) {
                 sb.append("(").append(photo.getAlbumId()).append(", ")
                         .append(photo.getId()).append(",")
@@ -131,7 +148,7 @@ public class DataBaseWorker {
                         )
                     """);
             StringBuilder sb = new StringBuilder();
-            sb.append("INSERT INTO albums (userId, id, title, body) VALUES");
+            sb.append("INSERT INTO posts (userId, id, title, body) VALUES");
             for (Posts post : posts) {
                 sb.append("(").append(post.getUserId()).append(", ")
                         .append(post.getId()).append(",")
@@ -146,27 +163,28 @@ public class DataBaseWorker {
             throw new RuntimeException(e);
         }
     }
-    public static void createUsersTable(List<User> users)  {
-        try (Connection connect = connect()){
+
+    public static void createUsersTable(List<User> users) {
+        try (Connection connect = connect()) {
             Statement statement = connect.createStatement();
             statement.execute("""
-                Create table if not exists users(
-            	id varchar not null,
-            	username varchar not null,
-            	email varchar not null,
-            	street varchar not null,
-            	suite varchar not null,
-            	city varchar not null,
-            	zipcode varchar not null,
-            	lat varchar not null,
-            	lng varchar not null,
-            	phone varchar not null,
-            	website varchar not null,
-            	name varchar not null,
-            	catchPhrase varchar not null,
-            	bs varchar not null
-                )
-            """);
+                        Create table if not exists users(
+                    	id varchar not null,
+                    	username varchar not null,
+                    	email varchar not null,
+                    	street varchar not null,
+                    	suite varchar not null,
+                    	city varchar not null,
+                    	zipcode varchar not null,
+                    	lat varchar not null,
+                    	lng varchar not null,
+                    	phone varchar not null,
+                    	website varchar not null,
+                    	name varchar not null,
+                    	catchPhrase varchar not null,
+                    	bs varchar not null
+                        )
+                    """);
 
             StringBuilder sb = new StringBuilder();
             sb.append("INSERT INTO users(id," + "name," + " username," + " email," + " street," + " suite," + " city," +
@@ -203,59 +221,33 @@ public class DataBaseWorker {
                         .append("'").append(catchPhrase).append("', ")
                         .append("'").append(bs).append("'").append(")").append(",");
             }
-            sb.deleteCharAt(sb.length()-1);
+            sb.deleteCharAt(sb.length() - 1);
             statement.execute(sb.toString());
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
 
+    public static void show() {
+        try (Connection connect = connect()) {
+            PreparedStatement preparedStatement = connect.prepareStatement("""
+                        SELECT u.username FROM users u
+                        JOIN posts p ON u.id = p.user_id
+                        WHERE p.id = ?
+                        LIMIT 1
+                    """);
 
+            int idPostFromUrl = new Scanner(System.in).nextInt();
 
+            preparedStatement.setInt(1, idPostFromUrl);
+            ResultSet resultSet = preparedStatement.executeQuery();
 
+            while (resultSet.next()) {
+                String title = resultSet.getString(1);
+                System.out.println(title);
+            }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    public static void deleteLines() {
-        try (Connection con = connect()) {
-            Statement statement = con.createStatement();
-            statement.execute("DELETE FROM albums WHERE user = 3");
+            preparedStatement.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -264,7 +256,7 @@ public class DataBaseWorker {
 
     public static Connection connect() throws SQLException {
         Connection connection;
-        String url = "";
+        String url = "jdbc:sqlite:C:\\Users\\Anton\\Programming\\IdeaProjects\\TeachSkills\\JavaHomework\\OneProject\\datebase.sqlite";
         connection = DriverManager.getConnection(url);
         return connection;
     }
