@@ -20,16 +20,16 @@ public class DataBaseRecord {
         List<User> users = gsonHundler.parseUsersJsonToObject();
 
 
-        DataBaseRecord.createAlbumsTable(albums);
-        DataBaseRecord.createCommentsTable(comments);
-        DataBaseRecord.createPhotosTable(photos);
-        DataBaseRecord.createPostsTable(posts);
+        DataBaseRecord.recordAlbumsTable(albums);
+        DataBaseRecord.recordCommentsTable(comments);
+        DataBaseRecord.recordPhotosTable(photos);
+        DataBaseRecord.recordPostsTable(posts);
         //DataBaseRecord.createUsersTable(users);
 
 
     }
 
-    public static void createAlbumsTable(List<Albums> albums) {
+    public static void recordAlbumsTable(List<Albums> albums) {
         try (Connection connect = connect()) {
             Statement statement = connect.createStatement();
             statement.execute("""
@@ -49,13 +49,14 @@ public class DataBaseRecord {
             }
             sb.deleteCharAt(sb.length() - 1);
             statement.execute(sb.toString());
+            System.out.println("Таблица albums добавлена в базу данных...");
             statement.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public static void createCommentsTable(List<Comments> comments) {
+    public static void recordCommentsTable(List<Comments> comments) {
         try (Connection connect = connect()) {
             Statement statement = connect.createStatement();
             statement.execute("""
@@ -79,13 +80,14 @@ public class DataBaseRecord {
             }
             sb.deleteCharAt(sb.length() - 1);
             statement.execute(sb.toString());
+            System.out.println("Таблица comments добавлена в базу данных...");
             statement.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public static void createPhotosTable(List<Photos> photos) {
+    public static void recordPhotosTable(List<Photos> photos) {
         try (Connection connect = connect()) {
             Statement statement = connect.createStatement();
             statement.execute("""
@@ -109,13 +111,14 @@ public class DataBaseRecord {
             }
             sb.deleteCharAt(sb.length() - 1);
             statement.execute(sb.toString());
+            System.out.println("Таблица photos добавлена в базу данных...");
             statement.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public static void createPostsTable(List<Posts> posts) {
+    public static void recordPostsTable(List<Posts> posts) {
         try (Connection connect = connect()) {
             Statement statement = connect.createStatement();
             statement.execute("""
@@ -137,6 +140,7 @@ public class DataBaseRecord {
             }
             sb.deleteCharAt(sb.length() - 1);
             statement.execute(sb.toString());
+            System.out.println("Таблица posts добавлена в базу данных...");
             statement.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -144,7 +148,7 @@ public class DataBaseRecord {
     }
 
 
-    public static void createUsersTable(List<User> users) {
+    public static void recordUsersTable(List<User> users) {
         try (Connection connect = connect()) {
             Statement statement = connect.createStatement();
             statement.execute("""
@@ -189,6 +193,7 @@ public class DataBaseRecord {
             }
             sb.deleteCharAt(sb.length() - 1);
             statement.execute(sb.toString());
+            System.out.println("Таблица users добавлена в базу данных...");
             statement.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);

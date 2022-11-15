@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 public class DateBaseCreator {
     public static void main(String[] args) {
+
         createAlbumTable();
     }
 

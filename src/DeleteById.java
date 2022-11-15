@@ -19,9 +19,11 @@ public class DeleteById {
         try (Connection connect = connect()) {
             Statement statement = connect.createStatement();
             //int id = new Scanner(System.in).nextInt();
-            System.out.println("Введите id для удаления  строки в таблице");
+            System.out.println("Введите id строки таблицы albums,которую необходимо удалить");
             int id = scanner.nextInt();
             statement.execute(String.format("DELETE FROM albums WHERE id = %d", id));
+            System.out.println(String.format("Строка с id = %d удалена",id));
+            System.out.println("----------------------------------------------------------------");
             statement.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -32,9 +34,11 @@ public class DeleteById {
     public static void deleteCommentsById() {
         try (Connection connect = connect()) {
             Statement statement = connect.createStatement();
-            System.out.println("Введите id для удаления  строки в таблице");
+            System.out.println("Введите id строки таблицы comments,которую необходимо удалить");
             int id = scanner.nextInt();
             statement.execute(String.format("DELETE FROM comments WHERE id = %d", id));
+            System.out.println(String.format("Строка с id = %d удалена",id));
+            System.out.println("----------------------------------------------------------------");
             statement.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -44,9 +48,11 @@ public class DeleteById {
     public static void deletePhotosById() {
         try (Connection connect = connect()) {
             Statement statement = connect.createStatement();
-            System.out.println("Введите id для удаления  строки в таблице");
+            System.out.println("Введите id строки таблицы photos,которую необходимо удалить");
             int id = scanner.nextInt();
             statement.execute(String.format("DELETE FROM photos WHERE id = %d", id));
+            System.out.println(String.format("Строка с id = %d удалена",id));
+            System.out.println("----------------------------------------------------------------");
             statement.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -56,9 +62,11 @@ public class DeleteById {
     public static void deletePostsById() {
         try (Connection connect = connect()) {
             Statement statement = connect.createStatement();
-            System.out.println("Введите id для удаления  строки в таблице");
+            System.out.println("Введите id строки таблицы posts,которую необходимо удалить");
             int id = scanner.nextInt();
             statement.execute(String.format("DELETE FROM posts WHERE id = %d", id));
+            System.out.println(String.format("Строка с id = %d удалена",id));
+            System.out.println("----------------------------------------------------------------");
             statement.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -68,9 +76,11 @@ public class DeleteById {
     public static void deleteUsersById() {
         try (Connection connect = connect()) {
             Statement statement = connect.createStatement();
-            System.out.println("Введите id для удаления  строки в таблице");
+            System.out.println("Введите id строки таблицы albums,которую необходимо удалить");
             int id = scanner.nextInt();
             statement.execute(String.format("DELETE FROM users WHERE id = %d", id));
+            System.out.println(String.format("Строка с id = %d удалена",id));
+            System.out.println("----------------------------------------------------------------");
             statement.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);

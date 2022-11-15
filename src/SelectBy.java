@@ -16,7 +16,7 @@ public class SelectBy {
     public static void SelectAlbumById() {
         try (Connection connect = connect()) {
             Statement statement = connect.createStatement();
-            System.out.println("Введите userId для выдачи совпадений с title  ");
+            System.out.println("Введите userId для выдачи совпадений с title из таблицы albums ");
             int userId = new Scanner(System.in).nextInt();
             ResultSet albumIdSet = statement.executeQuery(String.format("SELECT title FROM albums WHERE userId = %d", userId));
             while (albumIdSet.next()) {
@@ -31,7 +31,7 @@ public class SelectBy {
     public static void SelectAlbum() {
         try (Connection connect = connect()) {
             Statement statement = connect.createStatement();
-            System.out.println("Введите userId для выдачи совпадений с title  ");
+            System.out.println("Введите userId для выдачи совпадений из таблицы albums");
             //int userId = new Scanner(System.in).nextInt();
             ResultSet albumIdSet = statement.executeQuery("SELECT title FROM albums WHERE userId = ?");
             while (albumIdSet.next()) {
@@ -48,7 +48,7 @@ public class SelectBy {
     public static void SelectCommentsByPostId() {
         try (Connection connect = connect()) {
             Statement statement = connect.createStatement();
-            System.out.println("Введите postId для выдачи совпадений с emails");
+            System.out.println("Введите postId для выдачи совпадений с emails из таблицы comments");
             int postId = new Scanner(System.in).nextInt();
             ResultSet albumIdSet = statement.executeQuery(String.format("SELECT email FROM comments WHERE postId = %d", postId));
             while (albumIdSet.next()) {
@@ -64,7 +64,7 @@ public class SelectBy {
     public static void SelectPhotosByAlbumId() {
         try (Connection connect = connect()) {
             Statement statement = connect.createStatement();
-            System.out.println("Введите albumId для выдачи совпадений с thumbnailUrl");
+            System.out.println("Введите albumId для выдачи совпадений с thumbnailUrl из таблицы photos");
             int albumId = new Scanner(System.in).nextInt();
             ResultSet albumIdSet = statement.executeQuery(String.format("SELECT thumbnailUrl FROM photos WHERE albumId = %d", albumId));
             while (albumIdSet.next()) {
@@ -80,7 +80,7 @@ public class SelectBy {
     public static void SelectPostsByUserId() {
         try (Connection connect = connect()) {
             Statement statement = connect.createStatement();
-            System.out.println("Введите UserId для выдачи совпадений с body");
+            System.out.println("Введите UserId для выдачи совпадений с body из таблицы posts");
             int UserId = new Scanner(System.in).nextInt();
             ResultSet albumIdSet = statement.executeQuery(String.format("SELECT body FROM posts WHERE UserId = %d", UserId));
             while (albumIdSet.next()) {
@@ -96,7 +96,7 @@ public class SelectBy {
     public static void SelectUsersById() {
         try (Connection connect = connect()) {
             Statement statement = connect.createStatement();
-            System.out.println("Введите Id для выдачи совпадений с username ");
+            System.out.println("Введите Id для выдачи совпадений с username из таблицы users ");
             int id = new Scanner(System.in).nextInt();
             ResultSet albumIdSet = statement.executeQuery(String.format("SELECT username FROM users WHERE UserId = %d", id));
             while (albumIdSet.next()) {

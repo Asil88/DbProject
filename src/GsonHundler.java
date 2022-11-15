@@ -53,26 +53,31 @@ public class GsonHundler {
     public void toJsonFileAlbums(String file, List<Albums> albums) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         mapper.writeValue(new File(file), albums);
+        System.out.println("Лист albums преобразован в .json файл");
     }
 
     public void toJsonFileComments(String file, List<Comments> comments) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         mapper.writeValue(new File(file), comments);
+        System.out.println("Лист comments преобразован в .json файл");
     }
 
     public void toJsonFilePhotos(String file, List<Photos> photos) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         mapper.writeValue(new File(file), photos);
+        System.out.println("Лист photos преобразован в .json файл");
     }
 
     public void toJsonFilePosts(String file, List<Posts> posts) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         mapper.writeValue(new File(file), posts);
+        System.out.println("Лист posts преобразован в .json файл");
     }
 
     public void toJsonFileUsers(String file, List<User> users) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         mapper.writeValue(new File(file), users);
+        System.out.println("Лист users преобразован в .json файл");
     }
 
 
