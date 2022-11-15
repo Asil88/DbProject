@@ -1,18 +1,22 @@
-package objects;
+package classes;
 
-public class Posts {
+
+/*@XmlRootElement()
+@XmlAccessorType(XmlAccessType.FIELD)*/
+public class Albums {
+    //@XmlElement(name = "student")
     private int userId;
+   // @XmlElement(name = "student")
     private int id;
+   // @XmlElement(name = "student")
     private String title;
-    private String body;
 
-    public Posts(){}
+    public Albums() {}
 
-    public Posts(int userId, int id, String title, String body) {
+    public Albums(int userId, int id, String title) {
         this.userId = userId;
         this.id = id;
         this.title = title;
-        this.body = body;
     }
 
     public int getUserId() {
@@ -39,21 +43,12 @@ public class Posts {
         this.title = title;
     }
 
-    public String getBody() {
-        return body;
-    }
-
-    public void setBody(String body) {
-        this.body = body;
-    }
-
     @Override
     public String toString() {
-        return "Posts{" +
+        return "objects.Albums{" +
                 "userId=" + userId +
                 ", id=" + id +
                 ", title='" + title + '\'' +
-                ", body='" + body + '\'' +
                 '}';
     }
 }

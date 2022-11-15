@@ -1,4 +1,4 @@
-package objects;
+package classes;
 
 public class Photos {
     private int albumId;

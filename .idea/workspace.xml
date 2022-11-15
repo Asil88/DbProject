@@ -5,24 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0bb84828-b005-40cb-b39f-56071b5b8990" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/DateBaseCreator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/DeleteById.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/SelectBy.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/UpdateById.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OneProject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/OneProject.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/outputJsons/outComments.json" beforeDir="false" afterPath="$PROJECT_DIR$/outputJsons/outComments.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/outputJsons/outUser.json" beforeDir="false" afterPath="$PROJECT_DIR$/outputJsons/outUser.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datebase.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/datebase.sqlite" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Console.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Console.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataBaseWorker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataBaseRecord.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataBaseRecord.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataBaseRecord.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DeleteById.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DeleteById.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GsonHundler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GsonHundler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JaxbHundler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JaxbHundler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/Albums.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/Albums.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/users/Address.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/users/Address.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/users/Company.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/users/Company.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/users/Geo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/users/Geo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/users/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/users/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SelectBy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SelectBy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UpdateById.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UpdateById.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/Albums.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/Albums.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/Comments.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/Comments.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/Photos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/Photos.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/Posts.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/Posts.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/users/Address.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/users/Address.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/users/Company.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/users/Company.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/users/Geo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/users/Geo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/users/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classes/users/User.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +73,7 @@
     ]
   }
 }</component>
-  <component name="RunManager" selected="Application.DateBaseCreator">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="DataBaseRecord" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="DataBaseRecord" />
       <module name="OneProject" />
@@ -83,6 +83,13 @@
     </configuration>
     <configuration name="DateBaseCreator" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="DateBaseCreator" />
+      <module name="OneProject" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GsonHundler" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="GsonHundler" />
       <module name="OneProject" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -104,10 +111,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.DateBaseCreator" />
-        <item itemvalue="Application.SelectBy" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.DataBaseRecord" />
+        <item itemvalue="Application.GsonHundler" />
+        <item itemvalue="Application.DateBaseCreator" />
+        <item itemvalue="Application.SelectBy" />
       </list>
     </recent_temporary>
   </component>
@@ -148,7 +156,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Console.java</url>
-          <line>19</line>
+          <line>14</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>

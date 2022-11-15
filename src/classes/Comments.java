@@ -1,4 +1,4 @@
-package objects;
+package classes;
 
 public class Comments {
     private int postId;

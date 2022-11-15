@@ -1,8 +1,8 @@
-import objects.Albums;
-import objects.Comments;
-import objects.Photos;
-import objects.Posts;
-import objects.users.User;
+import classes.Albums;
+import classes.Comments;
+import classes.Photos;
+import classes.Posts;
+import classes.users.User;
 
 import java.io.IOException;
 import java.sql.*;
@@ -24,7 +24,7 @@ public class DataBaseRecord {
         DataBaseRecord.createCommentsTable(comments);
         DataBaseRecord.createPhotosTable(photos);
         DataBaseRecord.createPostsTable(posts);
-        DataBaseRecord.createUsersTable(users);
+        //DataBaseRecord.createUsersTable(users);
 
 
     }
@@ -196,7 +196,7 @@ public class DataBaseRecord {
     }
     public static Connection connect() throws SQLException {
         Connection connection;
-        String url = "jdbc:sqlite:D:\\Program\\JavaHomework\\DbProject\\datebase.sqlite";
+        String url = Console.URL;
         connection = DriverManager.getConnection(url);
         return connection;
     }

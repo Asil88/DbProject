@@ -1,28 +1,18 @@
-package objects;
+package classes;
 
-
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-
-@XmlRootElement()
-@XmlAccessorType(XmlAccessType.FIELD)
-public class Albums {
-    //@XmlElement(name = "student")
+public class Posts {
     private int userId;
-   // @XmlElement(name = "student")
     private int id;
-   // @XmlElement(name = "student")
     private String title;
+    private String body;
 
-    public Albums() {
-    }
+    public Posts(){}
 
-    public Albums(int userId, int id, String title) {
+    public Posts(int userId, int id, String title, String body) {
         this.userId = userId;
         this.id = id;
         this.title = title;
+        this.body = body;
     }
 
     public int getUserId() {
@@ -49,12 +39,21 @@ public class Albums {
         this.title = title;
     }
 
+    public String getBody() {
+        return body;
+    }
+
+    public void setBody(String body) {
+        this.body = body;
+    }
+
     @Override
     public String toString() {
-        return "objects.Albums{" +
+        return "Posts{" +
                 "userId=" + userId +
                 ", id=" + id +
                 ", title='" + title + '\'' +
+                ", body='" + body + '\'' +
                 '}';
     }
 }

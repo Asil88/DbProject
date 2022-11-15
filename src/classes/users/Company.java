@@ -1,4 +1,4 @@
-package objects.users;
+package classes.users;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -8,8 +8,7 @@ public class Company {
     private String catchPhrase;
     private String bs;
 
-    public Company() {
-    }
+    public Company() {}
 
     public Company(String name, String catchPhrase, String bs) {
         this.companyName = name;

@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class UpdateById {
     public static Connection connect() throws SQLException {
         Connection connection;
-        String url = "jdbc:sqlite:D:\\Program\\JavaHomework\\DbProject\\datebase.sqlite";
+        String url = Console.URL;
         connection = DriverManager.getConnection(url);
         return connection;
     }

@@ -1,4 +1,4 @@
-import objects.Albums;
+import classes.Albums;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;

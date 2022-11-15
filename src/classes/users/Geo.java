@@ -1,14 +1,14 @@
-package objects.users;
+package classes.users;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Geo {
-    private String lat;
-    private String lng;
+    public String lat;
+    public String lng;
 
-    private Geo() {
+    public Geo() {
     }
 
     public Geo(String lat, String lng) {

@@ -1,10 +1,14 @@
+import java.net.URL;
 import java.sql.*;
 import java.util.Scanner;
 
 public class SelectBy {
+    public static void main(String[] args) {
+        SelectAlbum();
+    }
     public static Connection connect() throws SQLException {
         Connection connection;
-        String url = "jdbc:sqlite:D:\\Program\\JavaHomework\\DbProject\\datebase.sqlite";
+        String url = Console.URL;
         connection = DriverManager.getConnection(url);
         return connection;
     }
@@ -24,6 +28,22 @@ public class SelectBy {
             throw new RuntimeException(e);
         }
     }
+    public static void SelectAlbum() {
+        try (Connection connect = connect()) {
+            Statement statement = connect.createStatement();
+            System.out.println("Введите userId для выдачи совпадений с title  ");
+            //int userId = new Scanner(System.in).nextInt();
+            ResultSet albumIdSet = statement.executeQuery("SELECT title FROM albums WHERE userId = ?");
+            while (albumIdSet.next()) {
+                System.out.println(albumIdSet.getString("title"));
+                System.out.println("------------------------------------------------------------");
+            }
+            statement.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
     public static void SelectCommentsByPostId() {
         try (Connection connect = connect()) {

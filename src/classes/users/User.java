@@ -1,8 +1,6 @@
-package objects.users;
+package classes.users;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-import java.util.List;
 
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -16,8 +14,7 @@ public class User {
     private String website;
     private Company company;
 
-    public User() {
-    }
+    public User() {}
 
     public User(String id, String name, String userName, String email, Address address, String phone, String website, Company company) {
         this.id = id;

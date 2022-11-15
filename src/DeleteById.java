@@ -8,7 +8,7 @@ public class DeleteById {
     public static final Scanner scanner = new Scanner(System.in);
     public static Connection connect() throws SQLException {
         Connection connection;
-        String url = "jdbc:sqlite:D:\\Program\\JavaHomework\\DbProject\\datebase.sqlite";
+        String url = Console.URL;
         connection = DriverManager.getConnection(url);
         return connection;
     }

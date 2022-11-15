@@ -1,4 +1,4 @@
-package objects.users;
+package classes.users;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -11,8 +11,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
         private String zipcode;
         private Geo geo;
 
-    public Address() {
-    }
+    public Address() {}
 
     public Address(String street, String suite, String city, String zipcode, Geo geo) {
             this.street = street;
